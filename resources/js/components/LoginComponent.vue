@@ -50,7 +50,10 @@ export default {
     methods:{
         login(){
             axios.post('api/user/login',{email:this.email,password:this.pass})
-            .then(res => console.log(res.data))
+            .then(res => {
+                localStorage.setItem('ACCESS_TOKEN',res.data.access_token);
+                this.$router.push('/home');
+            })
             .catch(err => console.log(err.data))
         }
     }
