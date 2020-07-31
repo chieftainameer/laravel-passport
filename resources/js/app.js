@@ -7,6 +7,8 @@
 require("./bootstrap");
 
 window.Vue = require("vue");
+import router from "./router";
+import vuetify from "./vuetify";
 import ExampleComponent from "./components/ExampleComponent";
 
 /**
@@ -33,6 +35,8 @@ import ExampleComponent from "./components/ExampleComponent";
 
 new Vue({
     el: "#app",
+    router,
+    vuetify,
     components: {
         "example-component": ExampleComponent
     }
