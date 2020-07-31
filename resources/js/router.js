@@ -23,7 +23,14 @@ const routes = [
     },
     {
         path: "/register",
-        component: RegisterComponent
+        component: RegisterComponent,
+        beforeEnter: (to, from, next) => {
+            if (localStorage.getItem("ACCESS_TOKEN")) {
+                next("/home");
+            } else {
+                next();
+            }
+        }
     },
     {
         path: "/home",
@@ -31,9 +38,14 @@ const routes = [
         name: "Home",
         beforeEnter: (to, from, next) => {
             axios
-                .get("api/all")
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err.data));
+                .get("api/user")
+                .then(res => {
+                    console.log(res);
+                    next();
+                })
+                .catch(err => {
+                    next("/login");
+                });
         }
     }
 ];

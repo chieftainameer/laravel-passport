@@ -16,7 +16,21 @@
                         >Contact Us</router-link
                     >
                 </li>
+                <li class="nav-item mx-5" @click="logout">
+                    <router-link to="#" class="nav-link">Log out</router-link>
+                </li>
             </ul>
         </nav>
     </div>
 </template>
+<script>
+export default {
+    data: () => ({}),
+    methods: {
+        logout() {
+            localStorage.removeItem("ACCESS_TOKEN");
+            this.$router.push("/login");
+        }
+    }
+};
+</script>
